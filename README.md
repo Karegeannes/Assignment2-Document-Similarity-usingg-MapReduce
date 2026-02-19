@@ -123,6 +123,7 @@ To copy the output from HDFS to your local machine:
 1. I ran into an issue `with docker compose up -d` not running due to the container names already being in use. Deleting the container via the desktop app fixed the issue. 
 4. The given command failed because the XML file maven uses in Step 2 produces `DocumentSimilarity-0.0.1-SNAPSHOT.jar` rather than the wordcount file. I edited all commands to use the right name
 5. This GitHub repo does not come with an input dataset, so I copied over the file structure from Hands-on L4 and decided to use Silent Night as my input data
+8. 
 
 ---
 ## Sample Input
