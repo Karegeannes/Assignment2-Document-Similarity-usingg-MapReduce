@@ -1,8 +1,8 @@
 # Assignment 2: Document Similarity using MapReduce
 
-**Name:** 
+**Name:** Jack Karegeannes
 
-**Student ID:** 
+**Student ID:** 801182728
 
 ## Approach and Implementation
 
@@ -42,7 +42,7 @@ mvn clean package
 Copy the JAR file to the Hadoop ResourceManager container:
 
 ```bash
-docker cp target/WordCountUsingHadoop-0.0.1-SNAPSHOT.jar resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
+docker cp target/DocumentSimilarity-0.0.1-SNAPSHOT.jar resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
 ```
 
 ### 5. **Move Dataset to Docker Container**
@@ -86,7 +86,7 @@ hadoop fs -put ./input.txt /input/data
 Run your MapReduce job using the following command: Here I got an error saying output already exists so I changed it to output1 instead as destination folder
 
 ```bash
-hadoop jar /opt/hadoop-3.2.1/share/hadoop/mapreduce/WordCountUsingHadoop-0.0.1-SNAPSHOT.jar com.example.controller.Controller /input/data/input.txt /output1
+hadoop jar /opt/hadoop-3.2.1/share/hadoop/mapreduce/DocumentSimilarity-0.0.1-SNAPSHOT.jar com.example.controller.Controller /input/data/input.txt /output1
 ```
 
 ### 9. **View the Output**
@@ -120,7 +120,9 @@ To copy the output from HDFS to your local machine:
 
 ## Challenges and Solutions
 
-[Describe any challenges you faced during this assignment. This could be related to the algorithm design (e.g., how to generate pairs), implementation details (e.g., data structures, debugging in Hadoop), or environmental issues. Explain how you overcame these challenges.]
+1. I ran into an issue `with docker compose up -d` not running due to the container names already being in use. Deleting the container via the desktop app fixed the issue. 
+4. The given command failed because the XML file maven uses in Step 2 produces `DocumentSimilarity-0.0.1-SNAPSHOT.jar` rather than the wordcount file. I edited all commands to use the right name
+5. This GitHub repo does not come with an input dataset, so I copied over the file structure from Hands-on L4 and decided to use Silent Night as my input data
 
 ---
 ## Sample Input
