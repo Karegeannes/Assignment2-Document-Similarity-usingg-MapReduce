@@ -86,7 +86,7 @@ hadoop fs -put ./input.txt /input/data
 Run your MapReduce job using the following command: Here I got an error saying output already exists so I changed it to output1 instead as destination folder
 
 ```bash
-hadoop jar /opt/hadoop-3.2.1/share/hadoop/mapreduce/DocumentSimilarity-0.0.1-SNAPSHOT.jar com.example.controller.Controller /input/data/input.txt /output1
+hadoop jar /opt/hadoop-3.2.1/share/hadoop/mapreduce/DocumentSimilarity-0.0.1-SNAPSHOT.jar com.example.controller.DocumentSimilarityDriver /input/data/input.txt /output1
 ```
 
 ### 9. **View the Output**
@@ -121,9 +121,9 @@ To copy the output from HDFS to your local machine:
 ## Challenges and Solutions
 
 1. I ran into an issue `with docker compose up -d` not running due to the container names already being in use. Deleting the container via the desktop app fixed the issue. 
-4. The given command failed because the XML file maven uses in Step 2 produces `DocumentSimilarity-0.0.1-SNAPSHOT.jar` rather than the wordcount file. I edited all commands to use the right name
+4. The given command failed because the XML file maven uses in Step 2 produces `DocumentSimilarity-0.0.1-SNAPSHOT.jar` rather than the wordcount file. I edited all commands to use the right filename
 5. This GitHub repo does not come with an input dataset, so I copied over the file structure from Hands-on L4 and decided to use Silent Night as my input data
-8. 
+8. Needed to fix it so that it called DocumentSimilarityDriver rather than Controller. Also needed to correct the file structure so that it was src/main/java/com/example/controller/ rather than src/main/com/example/controller/
 
 ---
 ## Sample Input
