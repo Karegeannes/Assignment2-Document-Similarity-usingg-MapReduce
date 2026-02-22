@@ -7,13 +7,13 @@
 ## Approach and Implementation
 
 ### Mapper Design
-[Explain the logic of your Mapper class. What is its input key-value pair? What does it emit as its output key-value pair? How does it help in solving the overall problem?]
+The DocumentSimilarityMapper takes in Object key, Text value as its key-value pair. The text being the text of a given document, including document title. It tokenizes the document and uses its first token as its identifier to fit the format given by the example input. It then lowercases all tokens and outputs a "word":"document identifier" as a key-value pair, ignoring words <= 3 letters long. Similar to the word counter example, its goal is breaking up the words within a document into elements so that the reducer can handle each word independently, making it easier to calculate document similarity. 
 
 ### Reducer Design
-[Explain the logic of your Reducer class. What is its input key-value pair? How does it process the values for a given key? What does it emit as the final output? How do you calculate the Jaccard Similarity here?]
+The reducer takes in the word-document key-value pair from the mapper, and has two functions for processing. reduce() processes a given key by getting the list of documents this word appears in and incrementing the pairIntersection of that document. This handles finding the intersection part of Jaccard Similarity. cleanup() then runs to get the union, and using the intersection found in reduce(), calculates and returns the Jaccard Similarity for each pair of documents. 
 
 ### Overall Data Flow
-[Describe how data flows from the initial input files, through the Mapper, shuffle/sort phase, and the Reducer to produce the final output.]
+The overall data flow is from input -> Mapper -> Reducer -> output. Hadoop passes each line from the input text into mapper, treating each line as its own document. The mapper produces word-doc key-value pairs for every word in the document, which are then passes to the reducer for Jaccard similarity calculation. Hadoop handles the shuffling between map and reduce. The reduce() function within the reducer class is done first, then cleanup() to get the final output.
 
 ---
 
