@@ -121,9 +121,11 @@ To copy the output from HDFS to your local machine:
 ## Challenges and Solutions
 
 1. I ran into an issue `with docker compose up -d` not running due to the container names already being in use. Deleting the container via the desktop app fixed the issue. 
+2. The original file structure was incorrect, meaning the jar file wasn't detecting the java files. src/main/java/com/example/replacing src/main/com/example/ for the file structure fixed these issues
 4. The given command failed because the XML file maven uses in Step 2 produces `DocumentSimilarity-0.0.1-SNAPSHOT.jar` rather than the wordcount file. I edited all commands to use the right filename
 5. This GitHub repo does not come with an input dataset, so I copied over the file structure from Hands-on L4 and decided to use Silent Night as my input data
-8. Needed to fix it so that it called DocumentSimilarityDriver rather than Controller. Also needed to correct the file structure so that it was src/main/java/com/example/controller/ rather than src/main/com/example/controller/
+7. Used `hadoop fs -rm -r /input` to delete old input data on subsequent runs
+8. Needed to fix it so that it called DocumentSimilarityDriver rather than Controller. Also needed to use `hadoop fs -rm -r /output1` to delete old output data
 
 ---
 ## Sample Input
